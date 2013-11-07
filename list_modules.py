@@ -1,6 +1,6 @@
 #! /usr/bin/env python
 """
-open one fhx file
+open one text file
 get a list of modules
 """
 import re
@@ -12,13 +12,13 @@ def main():
     filepath = './'
     filename = 'snippet'
     print 'reading', filename
-    new_lines = read_fhx(filepath + filename)
-    modules = get_module_list(new_lines)
+    lines = read_file(filepath + filename)
+    modules = get_module_list(lines)
     print 'found', len(modules), 'modules'
 
 
-def read_fhx(filename):
-    # read the fhx file - watchout for unicode
+def read_file(filename):
+    # read the file - watchout for unicode
     openfile = codecs.open(filename, encoding='UTF-16-LE',
                            mode='r', errors='strict')
     lines = openfile.readlines()
@@ -27,7 +27,7 @@ def read_fhx(filename):
 
 
 def get_module_list(lines):
-    # get a list from the fhx file
+    # get a list from the text file
     # each element of the list is a list of a module definition
     # the first element of the list is the tagname
     # the remaining elements are the lines of the definition
